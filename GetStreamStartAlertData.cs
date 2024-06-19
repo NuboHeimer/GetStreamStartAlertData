@@ -11,47 +11,59 @@ using Newtonsoft.Json;
 
 public class CPHInline
 {
-    public AlertData GetAllStreamStartAlertData()
+    public AlertData ParseAllStreamStartAlertData()
     {
         string pathToAlertText = args["pathToAlertText"].ToString();
         string alertData = File.ReadAllText(pathToAlertText);
         var data = JsonConvert.DeserializeObject<AlertData>(alertData);
         return data;
     }
+    public bool GetAllStreamStartAlertData()
+    {
+        var data = ParseAllStreamStartAlertData();
 
+        CPH.SetArgument("annonceText", data.Annonce);
+        CPH.SetArgument("game", data.Game);
+        CPH.SetArgument("translationTitle", data.TranslationTitle);
+        CPH.SetArgument("vkplLink", data.VKPlayLive.Link);
+        CPH.SetArgument("vkplOnilne", data.VKPlayLive.Goals.Online);
+        CPH.SetArgument("twitchFollowers", data.Twitch.Goals.Followers);
+        CPH.SetArgument("youTubeFollowers", data.YouTube.Goals.Followers);
+        return true;
+    }
     public bool GetAnnonceText()
     {
-        CPH.SetArgument("annonceText", GetAllStreamStartAlertData().Annonce);
+        CPH.SetArgument("annonceText", ParseAllStreamStartAlertData().Annonce);
         return true;
     }
     public bool GetGame()
     {
-        CPH.SetArgument("game", GetAllStreamStartAlertData().Game);
+        CPH.SetArgument("game", ParseAllStreamStartAlertData().Game);
         return true;
     }
     public bool GetTranslationTitle()
     {
-        CPH.SetArgument("translationTitle", GetAllStreamStartAlertData().TranslationTitle);
+        CPH.SetArgument("translationTitle", ParseAllStreamStartAlertData().TranslationTitle);
         return true;
     }
     public bool GetVkPlayLiveLink()
     {
-        CPH.SetArgument("vkplLink", GetAllStreamStartAlertData().VKPlayLive.Link);
+        CPH.SetArgument("vkplLink", ParseAllStreamStartAlertData().VKPlayLive.Link);
         return true;
     }
     public bool GetVkPlayLiveOnlineGoal()
     {
-        CPH.SetArgument("vkplOnilne", GetAllStreamStartAlertData().VKPlayLive.Goals.Online);
+        CPH.SetArgument("vkplOnilne", ParseAllStreamStartAlertData().VKPlayLive.Goals.Online);
         return true;
     }
     public bool GetTwitchFollowersGoal()
     {
-        CPH.SetArgument("twitchFollowers", GetAllStreamStartAlertData().Twitch.Goals.Followers);
+        CPH.SetArgument("twitchFollowers", ParseAllStreamStartAlertData().Twitch.Goals.Followers);
         return true;
     }
     public bool GetYouTubeFollowersGoal()
     {
-        CPH.SetArgument("youTubeFollowers", GetAllStreamStartAlertData().YouTube.Goals.Followers);
+        CPH.SetArgument("youTubeFollowers", ParseAllStreamStartAlertData().YouTube.Goals.Followers);
         return true;
     }
 
