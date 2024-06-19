@@ -3,7 +3,7 @@
 ///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
-///   Version:      1.0.2
+///   Version:      0.1.0
 ///----------------------------------------------------------------------------
 using System;
 using System.IO;
@@ -11,19 +11,47 @@ using Newtonsoft.Json;
 
 public class CPHInline
 {
-    public bool Execute()
+    public AlertData GetAllStreamStartAlertData()
     {
-        string message = "";
-        string roleForPing = args["roleForPing"].ToString();
         string pathToAlertText = args["pathToAlertText"].ToString();
-        string twitchFollowerCount = args["followerCount"].ToString();
-        string youTubeFollowerCount = args["youTubeFollowerCount"].ToString();
         string alertData = File.ReadAllText(pathToAlertText);
         var data = JsonConvert.DeserializeObject<AlertData>(alertData);
-        message = message + roleForPing + "\n\n" + data.Annonce + "\n\n**Игра —" + data.Game + "**\n\n_" + data.TranslationName + "_\n\n" + data.VKPlayLive.Link + "\n```\nЦели:\n  ● Средний онлайн — " + data.VKPlayLive.Goals.Online + "\n```\n\n" + data.Twitch.Link + "\n```\nЦели:\n  ● Фолловеры — " + data.Twitch.Goals.Followers.Replace("twitchFollowerCount", twitchFollowerCount) + "\n```\n\n" + data.YouTube.Link + "\n```\nЦели:\n  ● Фолловеры — " + data.YouTube.Goals.Followers.Replace("youTubeFollowerCount", youTubeFollowerCount) + "\n```\n\n";
-        message = message.Replace("followerCount", args["followerCount"].ToString());
-        CPH.LogInfo(message);
-        CPH.SetArgument("message", message);
+        return data;
+    }
+
+    public bool GetAnnonceText()
+    {
+        CPH.SetArgument("annonceText", GetAllStreamStartAlertData().Annonce);
+        return true;
+    }
+    public bool GetGame()
+    {
+        CPH.SetArgument("game", GetAllStreamStartAlertData().Game);
+        return true;
+    }
+    public bool GetTranslationTitle()
+    {
+        CPH.SetArgument("translationTitle", GetAllStreamStartAlertData().TranslationTitle);
+        return true;
+    }
+    public bool GetVkPlayLiveLink()
+    {
+        CPH.SetArgument("vkplLink", GetAllStreamStartAlertData().VKPlayLive.Link);
+        return true;
+    }
+    public bool GetVkPlayLiveOnlineGoal()
+    {
+        CPH.SetArgument("vkplOnilne", GetAllStreamStartAlertData().VKPlayLive.Goals.Online);
+        return true;
+    }
+    public bool GetTwitchFollowersGoal()
+    {
+        CPH.SetArgument("twitchFollowers", GetAllStreamStartAlertData().Twitch.Goals.Followers);
+        return true;
+    }
+    public bool GetYouTubeFollowersGoal()
+    {
+        CPH.SetArgument("youTubeFollowers", GetAllStreamStartAlertData().YouTube.Goals.Followers);
         return true;
     }
 
@@ -31,7 +59,7 @@ public class CPHInline
     {
         public string Annonce { get; set; }
         public string Game { get; set; }
-        public string TranslationName { get; set; }
+        public string TranslationTitle { get; set; }
         public VKPlayLiveData VKPlayLive { get; set; }
         public TwitchData Twitch { get; set; }
         public YouTubeData YouTube { get; set; }
