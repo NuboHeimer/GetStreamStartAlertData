@@ -3,7 +3,7 @@
 ///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
-///   Version:      0.1.0
+///   Version:      0.1.1
 ///----------------------------------------------------------------------------
 using System;
 using System.IO;
@@ -27,7 +27,9 @@ public class CPHInline
         CPH.SetArgument("translationTitle", data.TranslationTitle);
         CPH.SetArgument("vkplLink", data.VKPlayLive.Link);
         CPH.SetArgument("vkplOnilne", data.VKPlayLive.Goals.Online);
+        CPH.SetArgument("twitchLink", data.Twitch.Link);
         CPH.SetArgument("twitchFollowers", data.Twitch.Goals.Followers);
+        CPH.SetArgument("youTubeLink", data.YouTube.Link);
         CPH.SetArgument("youTubeFollowers", data.YouTube.Goals.Followers);
         return true;
     }
@@ -56,9 +58,19 @@ public class CPHInline
         CPH.SetArgument("vkplOnilne", ParseAllStreamStartAlertData().VKPlayLive.Goals.Online);
         return true;
     }
+        public bool GetTwitchLink()
+    {
+        CPH.SetArgument("twitchLink", ParseAllStreamStartAlertData().Twitch.Link);
+        return true;
+    }
     public bool GetTwitchFollowersGoal()
     {
         CPH.SetArgument("twitchFollowers", ParseAllStreamStartAlertData().Twitch.Goals.Followers);
+        return true;
+    }
+            public bool GetYouTubeLink()
+    {
+        CPH.SetArgument("youTubeLink", ParseAllStreamStartAlertData().YouTube.Link);
         return true;
     }
     public bool GetYouTubeFollowersGoal()
