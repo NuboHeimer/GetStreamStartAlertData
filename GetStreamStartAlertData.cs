@@ -15,8 +15,7 @@ public class CPHInline
     {
         string pathToAlertText = args["pathToAlertText"].ToString();
         string alertData = File.ReadAllText(pathToAlertText);
-        var data = JsonConvert.DeserializeObject<AlertData>(alertData);
-        return data;
+        return JsonConvert.DeserializeObject<AlertData>(alertData);;
     }
     public bool GetAllStreamStartAlertData()
     {
