@@ -1,5 +1,5 @@
 ///----------------------------------------------------------------------------
-///   Module:       Stream start annonce to discord
+///   Module:       Get stream annonce data
 ///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
