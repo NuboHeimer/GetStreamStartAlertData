@@ -1,5 +1,5 @@
 ///----------------------------------------------------------------------------
-///   Module:       Stream start annonce to discord
+///   Module:       Get stream annonce data
 ///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
@@ -15,8 +15,7 @@ public class CPHInline
     {
         string pathToAlertText = args["pathToAlertText"].ToString();
         string alertData = File.ReadAllText(pathToAlertText);
-        var data = JsonConvert.DeserializeObject<AlertData>(alertData);
-        return data;
+        return JsonConvert.DeserializeObject<AlertData>(alertData);;
     }
     public bool GetAllStreamStartAlertData()
     {
