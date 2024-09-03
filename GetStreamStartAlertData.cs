@@ -3,7 +3,7 @@
 ///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
-///   Version:      0.1.1
+///   Version:      0.1.2
 ///----------------------------------------------------------------------------
 using System;
 using System.IO;
@@ -28,8 +28,8 @@ public class CPHInline
         CPH.SetArgument("vkplOnilne", data.VKPlayLive.Goals.Online);
         CPH.SetArgument("twitchLink", data.Twitch.Link);
         CPH.SetArgument("twitchFollowers", data.Twitch.Goals.Followers);
-        CPH.SetArgument("youTubeLink", data.YouTube.Link);
-        CPH.SetArgument("youTubeFollowers", data.YouTube.Goals.Followers);
+        // CPH.SetArgument("youTubeLink", data.YouTube.Link);
+        // CPH.SetArgument("youTubeFollowers", data.YouTube.Goals.Followers);
         return true;
     }
 
@@ -75,17 +75,17 @@ public class CPHInline
         return true;
     }
 
-    public bool GetYouTubeLink()
-    {
-        CPH.SetArgument("youTubeLink", ParseAllStreamStartAlertData().YouTube.Link);
-        return true;
-    }
+    // public bool GetYouTubeLink()
+    // {
+    //     CPH.SetArgument("youTubeLink", ParseAllStreamStartAlertData().YouTube.Link);
+    //     return true;
+    // }
 
-    public bool GetYouTubeFollowersGoal()
-    {
-        CPH.SetArgument("youTubeFollowers", ParseAllStreamStartAlertData().YouTube.Goals.Followers);
-        return true;
-    }
+    // public bool GetYouTubeFollowersGoal()
+    // {
+    //     CPH.SetArgument("youTubeFollowers", ParseAllStreamStartAlertData().YouTube.Goals.Followers);
+    //     return true;
+    // }
 
     public class AlertData
     {
@@ -94,7 +94,7 @@ public class CPHInline
         public string TranslationTitle { get; set; }
         public VKPlayLiveData VKPlayLive { get; set; }
         public TwitchData Twitch { get; set; }
-        public YouTubeData YouTube { get; set; }
+        // public YouTubeData YouTube { get; set; }
     }
 
     public class VKPlayLiveData
@@ -109,11 +109,11 @@ public class CPHInline
         public GoalsData Goals { get; set; }
     }
 
-    public class YouTubeData
-    {
-        public string Link { get; set; }
-        public GoalsData Goals { get; set; }
-    }
+    // public class YouTubeData
+    // {
+    //     public string Link { get; set; }
+    //     public GoalsData Goals { get; set; }
+    // }
 
     public class GoalsData
     {
