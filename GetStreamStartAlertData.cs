@@ -3,7 +3,7 @@
 ///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
-///   Version:      0.1.2
+///   Version:      1.0.0
 ///----------------------------------------------------------------------------
 using System;
 using System.IO;
@@ -11,90 +11,105 @@ using Newtonsoft.Json;
 
 public class CPHInline
 {
-    public AlertData ParseAllStreamStartAlertData()
+    public bool SetAnnounceDataVariable()
     {
-        string pathToAlertText = args["pathToAlertText"].ToString();
-        string alertData = File.ReadAllText(pathToAlertText);
-        return JsonConvert.DeserializeObject<AlertData>(alertData);
+        if ((CPH.GetGlobalVar<string>("stringAnnounceData") == null) || ((CPH.GetGlobalVar<string>("stringAnnounceData") == "")))
+        {
+            //#TODO навесить try catch с виндовым алёртом в случае ошибки чтения пути до файла или чтения самого файла.
+            string pathToAnnounceData = args["pathToAnnounceData"].ToString();
+            string stringAnnounceData = File.ReadAllText(pathToAnnounceData);
+            // announceData announceData = JsonConvert.DeserializeObject<announceData>(stringAnnounceData);
+            CPH.SetGlobalVar("stringAnnounceData", stringAnnounceData, true);
+            CPH.LogInfo("Данные анонса загружены в стримербот.");
+        }
+
+        return true;
     }
 
-    public bool GetAllStreamStartAlertData()
+    public bool UnsetAnnounceDataToVariable()
     {
-        var data = ParseAllStreamStartAlertData();
-        CPH.SetArgument("annonceText", data.Annonce);
-        CPH.SetArgument("game", data.Game);
-        CPH.SetArgument("translationTitle", data.TranslationTitle);
-        CPH.SetArgument("vkplLink", data.VKPlayLive.Link);
-        CPH.SetArgument("vkplOnilne", data.VKPlayLive.Goals.Online);
-        CPH.SetArgument("twitchLink", data.Twitch.Link);
-        CPH.SetArgument("twitchFollowers", data.Twitch.Goals.Followers);
-        // CPH.SetArgument("youTubeLink", data.YouTube.Link);
-        // CPH.SetArgument("youTubeFollowers", data.YouTube.Goals.Followers);
+        CPH.UnsetGlobalVar("stringAnnounceData", true);
+        CPH.LogInfo("Данные анонса выгружены из стримербота.");
         return true;
+    }
+
+    public AnnounceData ParseAnnounceData()
+    {
+        string stringAnnounceData = CPH.GetGlobalVar<string>("stringAnnounceData").ToString();
+        return JsonConvert.DeserializeObject<AnnounceData>(stringAnnounceData);
     }
 
     public bool GetAnnonceText()
     {
-        CPH.SetArgument("annonceText", ParseAllStreamStartAlertData().Annonce);
+        SetAnnounceDataVariable();
+        CPH.SetArgument("annonceText", ParseAnnounceData().Annonce);
         return true;
     }
 
     public bool GetGame()
     {
-        CPH.SetArgument("game", ParseAllStreamStartAlertData().Game);
+        SetAnnounceDataVariable();
+        CPH.SetArgument("game", ParseAnnounceData().Game);
         return true;
     }
 
     public bool GetTranslationTitle()
     {
-        CPH.SetArgument("translationTitle", ParseAllStreamStartAlertData().TranslationTitle);
+        SetAnnounceDataVariable();
+        CPH.SetArgument("translationTitle", ParseAnnounceData().TranslationTitle);
         return true;
     }
 
     public bool GetVkPlayLiveLink()
     {
-        CPH.SetArgument("vkplLink", ParseAllStreamStartAlertData().VKPlayLive.Link);
+        SetAnnounceDataVariable();
+        CPH.SetArgument("vkplLink", ParseAnnounceData().VKPlayLive.Link);
         return true;
     }
 
     public bool GetVkPlayLiveOnlineGoal()
     {
-        CPH.SetArgument("vkplOnilne", ParseAllStreamStartAlertData().VKPlayLive.Goals.Online);
+        SetAnnounceDataVariable();
+        CPH.SetArgument("vkplOnilne", ParseAnnounceData().VKPlayLive.Goals.Online);
         return true;
     }
 
     public bool GetTwitchLink()
     {
-        CPH.SetArgument("twitchLink", ParseAllStreamStartAlertData().Twitch.Link);
+        SetAnnounceDataVariable();
+        CPH.SetArgument("twitchLink", ParseAnnounceData().Twitch.Link);
         return true;
     }
 
     public bool GetTwitchFollowersGoal()
     {
-        CPH.SetArgument("twitchFollowers", ParseAllStreamStartAlertData().Twitch.Goals.Followers);
+        SetAnnounceDataVariable();
+        CPH.SetArgument("twitchFollowers", ParseAnnounceData().Twitch.Goals.Followers);
         return true;
     }
 
-    // public bool GetYouTubeLink()
-    // {
-    //     CPH.SetArgument("youTubeLink", ParseAllStreamStartAlertData().YouTube.Link);
-    //     return true;
-    // }
+    public bool GetYouTubeLink()
+    {
+        SetAnnounceDataVariable();
+        CPH.SetArgument("youTubeLink", ParseAnnounceData().YouTube.Link);
+        return true;
+    }
 
-    // public bool GetYouTubeFollowersGoal()
-    // {
-    //     CPH.SetArgument("youTubeFollowers", ParseAllStreamStartAlertData().YouTube.Goals.Followers);
-    //     return true;
-    // }
+    public bool GetYouTubeFollowersGoal()
+    {
+        SetAnnounceDataVariable();
+        CPH.SetArgument("youTubeFollowers", ParseAnnounceData().YouTube.Goals.Followers);
+        return true;
+    }
 
-    public class AlertData
+    public class AnnounceData
     {
         public string Annonce { get; set; }
         public string Game { get; set; }
         public string TranslationTitle { get; set; }
         public VKPlayLiveData VKPlayLive { get; set; }
         public TwitchData Twitch { get; set; }
-        // public YouTubeData YouTube { get; set; }
+        public YouTubeData YouTube { get; set; }
     }
 
     public class VKPlayLiveData
@@ -109,11 +124,11 @@ public class CPHInline
         public GoalsData Goals { get; set; }
     }
 
-    // public class YouTubeData
-    // {
-    //     public string Link { get; set; }
-    //     public GoalsData Goals { get; set; }
-    // }
+    public class YouTubeData
+    {
+        public string Link { get; set; }
+        public GoalsData Goals { get; set; }
+    }
 
     public class GoalsData
     {
