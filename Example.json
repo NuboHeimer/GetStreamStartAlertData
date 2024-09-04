@@ -1,0 +1,29 @@
+{
+    "Annonce": "'Я опять забыл, что происходит в этой игре.'",
+    "Game": "Deus Ex",
+    "TranslationTitle": "Киборги атакуют |!Подсказки, !Интерактив",
+    "VKPlayLive":
+    {
+        "Link": "https://vkplay.live/nuboheimer",
+        "Goals":
+        {
+            "Online": "totalAverageVkPlayLiveViewers/10"
+        }
+    },
+    "Twitch":
+    {
+        "Link": "https://twitch.tv/nuboheimer",
+        "Goals":
+        {
+            "Followers": "twitchFollowerCount/250"
+        }
+    },
+    "YouTube":
+    {
+        "Link": "https://www.youtube.com/@nuboheimer",
+        "Goals":
+        {
+            "Followers": "youTubeFollowerCount/250"
+        }
+    }
+}
