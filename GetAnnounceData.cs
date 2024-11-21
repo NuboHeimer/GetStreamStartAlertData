@@ -3,7 +3,7 @@
 ///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
-///   Version:      1.0.1
+///   Version:      personal
 ///----------------------------------------------------------------------------
 using System;
 using System.IO;
@@ -96,139 +96,10 @@ public class CPHInline
         return true;
     }
 
-    public bool GetVkPlayLiveLink()
-    {
-        SetAnnounceDataVariable();
-        string vkplLink = ParseAnnounceData().VKPlayLive.Link;
-        if (vkplLink == null)
-        {
-            CPH.ShowToastNotification("Не удалось найти поле VKPlayLive.Link", "Провертье файл с анонсом");
-            CPH.SetArgument("vkplLink", "Заглушка");
-        }
-        else
-        {
-            CPH.SetArgument("vkplLink", vkplLink);
-        }
-
-        return true;
-    }
-
-    public bool GetVkPlayLiveOnlineGoal()
-    {
-        SetAnnounceDataVariable();
-        string vkplOnilneGoal = ParseAnnounceData().VKPlayLive.Goals.Online;
-        if (vkplOnilneGoal == null)
-        {
-            CPH.ShowToastNotification("Не удалось найти поле VKPlayLive.Goals.Online", "Провертье файл с анонсом");
-            CPH.SetArgument("vkplOnilneGoal", "Заглушка");
-        }
-        else
-        {
-            CPH.SetArgument("vkplOnilneGoal", vkplOnilneGoal);
-        }
-
-        return true;
-    }
-
-    public bool GetTwitchLink()
-    {
-        SetAnnounceDataVariable();
-        string twitchLink = ParseAnnounceData().Twitch.Link;
-        if (twitchLink == null)
-        {
-            CPH.ShowToastNotification("Не удалось найти поле Twitch.Link", "Провертье файл с анонсом");
-            CPH.SetArgument("twitchLink", "Заглушка");
-        }
-        else
-        {
-            CPH.SetArgument("twitchLink", twitchLink);
-        }
-
-        return true;
-    }
-
-    public bool GetTwitchFollowersGoal()
-    {
-        SetAnnounceDataVariable();
-        string twitchFollowersGoal = ParseAnnounceData().Twitch.Goals.Followers;
-        if (twitchFollowersGoal == null)
-        {
-            CPH.ShowToastNotification("Не удалось найти поле Twitch.Goals.Followers", "Провертье файл с анонсом");
-            CPH.SetArgument("twitchFollowersGoal", "Заглушка");
-        }
-        else
-        {
-            CPH.SetArgument("twitchFollowersGoal", twitchFollowersGoal);
-        }
-
-        return true;
-    }
-
-    public bool GetYouTubeLink()
-    {
-        SetAnnounceDataVariable();
-        string youTubeLink = ParseAnnounceData().YouTube.Link;
-        if (youTubeLink == null)
-        {
-            CPH.ShowToastNotification("Не удалось найти поле YouTube.Link", "Провертье файл с анонсом");
-            CPH.SetArgument("youTubeLink", "Заглушка");
-        }
-        else
-        {
-            CPH.SetArgument("youTubeLink", youTubeLink);
-        }
-
-        return true;
-    }
-
-    public bool GetYouTubeFollowersGoal()
-    {
-        SetAnnounceDataVariable();
-        string youTubeFollowersGoal = ParseAnnounceData().YouTube.Goals.Followers;
-        if (youTubeFollowersGoal == null)
-        {
-            CPH.ShowToastNotification("Не удалось найти поле YouTube.Goals.Followers", "Провертье файл с анонсом");
-            CPH.SetArgument("youTubeFollowersGoal", "Заглушка");
-        }
-        else
-        {
-            CPH.SetArgument("youTubeFollowersGoal", youTubeFollowersGoal);
-        }
-
-        return true;
-    }
-
     public class AnnounceData
     {
         public string Annonce { get; set; }
         public string Game { get; set; }
         public string TranslationTitle { get; set; }
-        public VKPlayLiveData VKPlayLive { get; set; }
-        public TwitchData Twitch { get; set; }
-        public YouTubeData YouTube { get; set; }
-    }
-
-    public class VKPlayLiveData
-    {
-        public string Link { get; set; }
-        public GoalsData Goals { get; set; }
-    }
-
-    public class TwitchData
-    {
-        public string Link { get; set; }
-        public GoalsData Goals { get; set; }
-    }
-
-    public class YouTubeData
-    {
-        public string Link { get; set; }
-        public GoalsData Goals { get; set; }
-    }
-
-    public class GoalsData
-    {
-        public string Online { get; set; }
-        public string Followers { get; set; }
     }
 }
