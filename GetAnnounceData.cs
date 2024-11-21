@@ -52,7 +52,7 @@ public class CPHInline
         if (announce == null)
         {
             CPH.ShowToastNotification("Не удалось найти поле Annonce", "Провертье файл с анонсом");
-            CPH.SetArgument("annonceText", "Заглушка");
+            CPH.SetArgument("annonceText", null);
         }
         else
         {
@@ -69,7 +69,7 @@ public class CPHInline
         if (game == null)
         {
             CPH.ShowToastNotification("Не удалось найти поле Game", "Провертье файл с анонсом");
-            CPH.SetArgument("game", "Заглушка");
+            CPH.SetArgument("game", null);
         }
         else
         {
@@ -86,7 +86,7 @@ public class CPHInline
         if (translationTitle == null)
         {
             CPH.ShowToastNotification("Не удалось найти поле TranslationTitle", "Провертье файл с анонсом");
-            CPH.SetArgument("translationTitle", "Заглушка");
+            CPH.SetArgument("translationTitle", null);
         }
         else
         {
