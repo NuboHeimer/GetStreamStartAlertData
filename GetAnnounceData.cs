@@ -27,4 +27,11 @@ public class CPHInline
 
         return true;
     }
+
+    public bool UnsetAnnounceDataToVariable()
+    {
+        CPH.UnsetGlobalVar("stringAnnouncementText", true);
+        CPH.LogInfo("Данные анонса выгружены из стримербота.");
+        return true;
+    }
 }
