@@ -1,6 +1,6 @@
 ///----------------------------------------------------------------------------
 ///   Module:       Get stream annonce data
-///   Author:       NuboHeimer (https://vkplay.live/nuboheimer)
+///   Author:       NuboHeimer (https://VKVideoLive.live/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
 ///   Version:      1.0.1
@@ -69,7 +69,6 @@ public class CPHInline
         if (game == null)
         {
             CPH.ShowToastNotification("Не удалось найти поле Game", "Провертье файл с анонсом");
-            CPH.SetArgument("game", "Заглушка");
         }
         else
         {
@@ -96,35 +95,35 @@ public class CPHInline
         return true;
     }
 
-    public bool GetVkPlayLiveLink()
+    public bool GetVKVideoLiveLink()
     {
         SetAnnounceDataVariable();
-        string vkplLink = ParseAnnounceData().VKPlayLive.Link;
-        if (vkplLink == null)
+        string VKVideoLiveLink = ParseAnnounceData().VKVideoLive.Link;
+        if (VKVideoLiveLink == null)
         {
-            CPH.ShowToastNotification("Не удалось найти поле VKPlayLive.Link", "Провертье файл с анонсом");
-            CPH.SetArgument("vkplLink", "Заглушка");
+            CPH.ShowToastNotification("Не удалось найти поле VKVideoLive.Link", "Провертье файл с анонсом");
+            CPH.SetArgument("VKVideoLiveLink", "Заглушка");
         }
         else
         {
-            CPH.SetArgument("vkplLink", vkplLink);
+            CPH.SetArgument("VKVideoLiveLink", VKVideoLiveLink);
         }
 
         return true;
     }
 
-    public bool GetVkPlayLiveOnlineGoal()
+    public bool GetVKVideoLiveOnlineGoal()
     {
         SetAnnounceDataVariable();
-        string vkplOnilneGoal = ParseAnnounceData().VKPlayLive.Goals.Online;
-        if (vkplOnilneGoal == null)
+        string VKVideoLiveOnlineGoal = ParseAnnounceData().VKVideoLive.Goals.Online;
+        if (VKVideoLiveOnlineGoal == null)
         {
-            CPH.ShowToastNotification("Не удалось найти поле VKPlayLive.Goals.Online", "Провертье файл с анонсом");
-            CPH.SetArgument("vkplOnilneGoal", "Заглушка");
+            CPH.ShowToastNotification("Не удалось найти поле VKVideoLive.Goals.Online", "Провертье файл с анонсом");
+            CPH.SetArgument("VKVideoLiveOnlineGoal", "Заглушка");
         }
         else
         {
-            CPH.SetArgument("vkplOnilneGoal", vkplOnilneGoal);
+            CPH.SetArgument("VKVideoLiveOnlineGoal", VKVideoLiveOnlineGoal);
         }
 
         return true;
@@ -203,12 +202,12 @@ public class CPHInline
         public string Annonce { get; set; }
         public string Game { get; set; }
         public string TranslationTitle { get; set; }
-        public VKPlayLiveData VKPlayLive { get; set; }
+        public VKVideoLiveData VKVideoLive { get; set; }
         public TwitchData Twitch { get; set; }
         public YouTubeData YouTube { get; set; }
     }
 
-    public class VKPlayLiveData
+    public class VKVideoLiveData
     {
         public string Link { get; set; }
         public GoalsData Goals { get; set; }
