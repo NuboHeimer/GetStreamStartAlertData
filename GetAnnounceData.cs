@@ -1,6 +1,6 @@
 ///----------------------------------------------------------------------------
 ///   Module:       Get stream annonce data
-///   Author:       NuboHeimer (https://VKVideoLive.live/nuboheimer)
+///   Author:       NuboHeimer (https://live.vkvideo.ru/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
 ///   Version:      1.0.1
