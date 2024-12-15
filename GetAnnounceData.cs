@@ -3,7 +3,7 @@
 ///   Author:       NuboHeimer (https://live.vkvideo.ru/nuboheimer)
 ///   Email:        nuboheimer@yandex.ru
 ///   Telegram:     t.me/nuboheimer
-///   Version:      1.0.1
+///   Version:      2.0.0
 ///----------------------------------------------------------------------------
 using System;
 using System.IO;
